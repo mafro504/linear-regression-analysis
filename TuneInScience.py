@@ -12,37 +12,37 @@ from scipy import stats
 
 
 #READ IN DATA
-Samba = pd.read_csv('Samba_HistoricalData5.csv')
+TuneIn = pd.read_csv('TuneIn_HistoricalData5.csv')
 
 
 #CHECK DATA
 #first few lines look correct
-print (Samba.head())
+print (TuneIn.head())
 
 #data types look correct (all integer or float)
-print (Samba.info())
+print (TuneIn.info())
 
 #initial stats of data
-print (Samba.describe())
+print (TuneIn.describe())
 
 #view column headers
-print (Samba.columns)
+print (TuneIn.columns)
 
 #visualizations
-sns.pairplot(Samba)
+sns.pairplot(TuneIn)
 
 #visualize outcome variable
-sns.distplot(Samba['Target_Lift'])
+sns.distplot(TuneIn['Target_Lift'])
 
 
 #CORRELATION
-SambaCorrs = Samba.corr()
-SambaCorrs.to_excel('SambaCorrelations2.xlsx')
+TuneInCorrs = TuneIn.corr()
+TuneInCorrs.to_excel('TuneInCorrelations2.xlsx')
 
 
 #TRAIN LINEAR REGRESSION MODEL
 #set x and y based on columns
-X = Samba[['Lift_All_Windows', 'Lift_Target_Window',
+X = TuneIn[['Lift_All_Windows', 'Lift_Target_Window',
        'CampaignDuration', 'NewReturning', 'Network_CableTV',
        'Network_Sports', 'Network_PremiumTV', 'PremiereLeadTime',
        'PremiereDay', 'PremierePrimeTime', 'EpisodesMeasured',
@@ -53,7 +53,7 @@ X = Samba[['Lift_All_Windows', 'Lift_Target_Window',
        'TargetViewWindow_L7',
        'Premiere_Frequency', 'Premiere_Impressions', 'FirstView',
        'BrandReminder', 'Poll', 'PreRoll', 'Campaign_Cost']]
-y = Samba['Target_Lift']
+y = TuneIn['Target_Lift']
 
 #split data based on training and test. 30% = test, 70% = training
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
@@ -75,7 +75,7 @@ print (coeff_df)
 coeff_df.to_excel('Coefficients_v2.xlsx')
 
 #standard deviation for use in calculating standardized coefficients
-print (np.std(Samba))
+print (np.std(TuneIn))
 
 #p-values to identify statistical significance 
 X2 = sm.add_constant(X_train)
