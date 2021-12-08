@@ -37,7 +37,7 @@ sns.distplot(TuneIn['Target_Lift'])
 
 #CORRELATION
 TuneInCorrs = TuneIn.corr()
-TuneInCorrs.to_excel('TuneInCorrelations2.xlsx')
+TuneInCorrs.to_excel('VariableCorrelations.xlsx')
 
 
 #TRAIN LINEAR REGRESSION MODEL
